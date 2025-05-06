@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brave Birds: Match 3 Puzzle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel='icon' href='/src/icons/logo.png' type='image/x-icon'>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brave-green': '#005800',
+                        'brave-lime': '#96d900',
+                        'brave-red': '#9c0000',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .feather-glow {
+            filter: drop-shadow(0 0 8px rgba(150, 217, 0, 0.7));
+        }
+
+        .section-curve {
+            border-radius: 0 0 50% 50% / 100px;
+        }
+
+        .game-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 88, 0, 0.2);
+        }
+
+        .feather-glow {
+            filter: drop-shadow(0 0 8px rgba(150, 217, 0, 0.7));
+        }
+
+        .policy-link {
+            color: #9c0000;
+            transition: all 0.3s ease;
+        }
+
+        .policy-link:hover {
+            color: #005800;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .policy-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .policy-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased bg-white">
+    <!-- Header -->
+    <header class="bg-white py-4 px-6 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-brave-lime rounded-full overflow-hidden flex items-center justify-center">
+                    <img src="/src/icons/logo.png" alt="Brave Birds Logo" class="h-10 w-10  rounded-full object-contain">
+                </div>
+                <span class="text-brave-green font-extrabold text-2xl">Brave Birds: Match 3 Puzzle</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6">
+                <a href="/" class="text-brave-green hover:text-brave-lime font-medium transition-colors">Features</a>
+                <a href="/" class="text-brave-green hover:text-brave-lime font-medium transition-colors">Characters</a>
+                <a href="/" class="text-brave-green hover:text-brave-lime font-medium transition-colors">Gallery</a>
+                <a href="/" class="text-brave-green hover:text-brave-lime font-medium transition-colors">Testimonials</a>
+                <a href="/" class="bg-brave-red text-white font-bold py-3 px-6 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105">Download</a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button class="md:hidden text-brave-green">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+
+    <!-- Privacy Policy Header Section -->
+    <section class="py-20 bg-brave-green text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20" style="background-image: url('/api/placeholder/1200/800'); background-size: cover; background-position: center;"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-thin text-white mb-6">Privacy <span class="font-bold feather-glow">Policy</span></h1>
+                <p class="text-xl max-w-3xl mx-auto">Your privacy matters to us. Learn how we handle your information.</p>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12">
+                    <p class="text-lg text-gray-700 mb-6">
+                        At Brave Birds: Match 3 Puzzle, accessible from https://brave-birds-play.com/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that are collected and recorded by Brave Birds: Match 3 Puzzle and how we use it.
+                    </p>
+                    <p class="text-lg text-gray-700">
+                        If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.
+                    </p>
+                </div>
+
+                <!-- Log Files Section -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-brave-green mb-6">Log Files</h2>
+                    <div class="bg-gray-50 rounded-3xl p-8 shadow-lg border-l-4 border-brave-lime">
+                        <p class="text-lg text-gray-700 mb-4">
+                            Brave Birds: Match 3 Puzzle follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and are a part of hosting services' analytics.
+                        </p>
+                        <p class="text-lg text-gray-700 mb-4">
+                            The information collected by log files includes:
+                        </p>
+                        <ul class="list-disc pl-8 mb-4 text-lg text-gray-700 space-y-2">
+                            <li>Internet protocol (IP) addresses</li>
+                            <li>Browser type</li>
+                            <li>Internet Service Provider (ISP)</li>
+                            <li>Date and time stamp</li>
+                            <li>Referring/exit pages</li>
+                            <li>Number of clicks</li>
+                        </ul>
+                        <p class="text-lg text-gray-700">
+                            These are not linked to any personally identifiable information. The purpose of the information is to analyze trends, administer the site, track users' movement on the website, and gather demographic information.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cookies Section -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-brave-green mb-6">Cookies and Web Beacons</h2>
+                    <div class="bg-gray-50 rounded-3xl p-8 shadow-lg border-l-4 border-brave-red">
+                        <p class="text-lg text-gray-700 mb-4">
+                            Like any other website, Brave Birds: Match 3 Puzzle uses "cookies". These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited.
+                        </p>
+                        <p class="text-lg text-gray-700 mb-4">
+                            The information is used to optimize the users' experience by customizing our web page content based on visitors browser type and/or other information.
+                        </p>
+                        <p class="text-lg text-gray-700">
+                            For more general information on cookies, please read the "Cookies" article from the Privacy Policy Generator.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google and Advertising Partners Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <!-- Google Section -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-brave-green mb-6">Google DoubleClick DART Cookie</h2>
+                    <div class="bg-white rounded-3xl p-8 shadow-lg">
+                        <p class="text-lg text-gray-700 mb-4">
+                            Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to www.website.com and other sites on the internet.
+                        </p>
+                        <p class="text-lg text-gray-700">
+                            However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL –
+                            <a href="https://policies.google.com/technologies/ads" class="text-brave-red hover:text-brave-green transition-colors font-medium">https://policies.google.com/technologies/ads</a>
+                        </p>
+                    </div>
+                </div>
+                <!-- Advertising Partners Section -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-brave-green mb-6">Our Advertising Partners</h2>
+                    <div class="bg-white rounded-3xl p-8 shadow-lg">
+                        <p class="text-lg text-gray-700 mb-4">
+                            Some of advertisers on our site may use cookies and web beacons. Our advertising partners are listed below. Each of our advertising partners has its own Privacy Policy for their policies on user data. For easier access, we hyperlinked to their Privacy Policies below.
+                        </p>
+
+                        <div class="flex items-center mb-4 p-4 bg-gray-50 rounded-xl">
+                            <div class="w-12 h-12 bg-brave-lime rounded-full flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-brave-green">Google</h3>
+                                <a href="https://policies.google.com/technologies/ads" class="text-brave-red hover:text-brave-green transition-colors">https://policies.google.com/technologies/ads</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy Policies Section -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-brave-green mb-6">Privacy Policies</h2>
+                    <div class="bg-white rounded-3xl p-8 shadow-lg">
+                        <p class="text-lg text-gray-700 mb-4">
+                            You may consult this list to find the Privacy Policy for each of the advertising partners of Brave Birds: Match 3 Puzzle.
+                        </p>
+                        <p class="text-lg text-gray-700 mb-4">
+                            Third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on Brave Birds: Match 3 Puzzle, which are sent directly to users' browsers. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
+                        </p>
+                        <p class="text-lg text-gray-700">
+                            Note that Brave Birds: Match 3 Puzzle has no access to or control over these cookies that are used by third-party advertisers.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Third Party Privacy Policies Section -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-brave-green mb-6">Third Party Privacy Policies</h2>
+                    <div class="bg-white rounded-3xl p-8 shadow-lg">
+                        <p class="text-lg text-gray-700 mb-4">
+                            Brave Birds: Match 3 Puzzle's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt out of certain options.
+                        </p>
+                        <p class="text-lg text-gray-700 mb-4">
+                            You can choose to disable cookies through your browser options. More detailed information about cookie management with specific web browsers can be found at the browsers' respective websites. What Are Cookies?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Children's Information Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-brave-green mb-6">Children's Information</h2>
+                    <div class="bg-gray-50 rounded-3xl p-8 shadow-lg border-t-4 border-brave-red">
+                        <div class="flex items-start mb-6">
+                            <div class="bg-brave-red rounded-full p-3 mr-4 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </div>
+                            <p class="text-lg text-gray-700">
+                                Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.
+                            </p>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-brave-red rounded-full p-3 mr-4 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <p class="text-lg text-gray-700">
+                                Brave Birds: Match 3 Puzzle does not knowingly collect any personally identifiable Information from children under the age of 13. Suppose you think that your child provided this kind of information on our website. In that case, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Online Privacy Policy Section -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-brave-green mb-6">Online Privacy Policy Only</h2>
+                    <div class="bg-gray-50 rounded-3xl p-8 shadow-lg">
+                        <p class="text-lg text-gray-700 mb-4">
+                            This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they share and/or collect in Brave Birds: Match 3 Puzzle. This policy does not apply to any information collected offline or via channels other than this website.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Consent Section -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-brave-green mb-6">Consent</h2>
+                    <div class="bg-brave-lime bg-opacity-10 rounded-3xl p-8 shadow-lg border-2 border-brave-lime">
+                        <p class="text-lg text-gray-700">
+                            By using our website, you at this moment consent to our Privacy Policy and agree to its Terms and Conditions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Policies Navigation Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-brave-green mb-8 text-center">Other Important Information</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <a href="/Policy356/" class="group">
+                        <div class="bg-gray-50 rounded-3xl p-6 shadow-lg text-center border-t-4 border-brave-lime h-full flex flex-col items-center justify-center transition-all duration-300 group-hover:transform group-hover:-translate-y-2">
+                            <div class="w-16 h-16 bg-brave-lime rounded-full flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-brave-green mb-2">Privacy Policy</h3>
+                            <p class="text-gray-600">How we collect, use, and protect your information</p>
+                        </div>
+                    </a>
+
+                    <a href="/Service347/" class="group">
+                        <div class="bg-gray-50 rounded-3xl p-6 shadow-lg text-center border-t-4 border-brave-red h-full flex flex-col items-center justify-center transition-all duration-300 group-hover:transform group-hover:-translate-y-2">
+                            <div class="w-16 h-16 bg-brave-red rounded-full flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-brave-red mb-2">Terms of Service</h3>
+                            <p class="text-gray-600">Rules and guidelines for using our game and website</p>
+                        </div>
+                    </a>
+
+                    <a href="/Cookie992/" class="group">
+                        <div class="bg-gray-50 rounded-3xl p-6 shadow-lg text-center border-t-4 border-brave-green h-full flex flex-col items-center justify-center transition-all duration-300 group-hover:transform group-hover:-translate-y-2">
+                            <div class="w-16 h-16 bg-brave-green rounded-full flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-brave-green mb-2">Cookie Policy</h3>
+                            <p class="text-gray-600">Details about how we use cookies and similar technologies</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-brave-green text-white py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <a href="/" class="flex items-center gap-3 mb-6 md:mb-0">
+                    <div class="w-12 h-12 bg-brave-lime rounded-full overflow-hidden flex items-center justify-center">
+                        <img src="/src/icons/logo.png" alt="Brave Birds Logo" class="h-10 w-10 rounded-full object-contain">
+                    </div>
+                    <span class="text-white font-bold text-xl">Brave Birds: Match 3 Puzzle</span>
+                </a>
+
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/charstudio/" target="_blank" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-brave-lime hover:text-brave-green transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/charstudio_team/" target="_blank" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-brave-lime hover:text-brave-green transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="border-t border-white border-opacity-20 pt-8 flex flex-col md:flex-row justify-between">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <p>&copy; 2025 Brave Birds Game. All Rights Reserved.</p>
+                </div>
+                <div class="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
+                    <a href="/Policy356/" class="hover:text-brave-lime transition-colors">Privacy Policy</a>
+                    <a href="/Service347/" class="hover:text-brave-lime transition-colors">Terms of Service</a>
+                    <a href="/Cookie992/" class="hover:text-brave-lime transition-colors">Cookie Policy</a>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Simple JS for mobile menu toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'fixed inset-0 bg-brave-green z-50 flex flex-col items-center justify-center transform -translate-y-full transition-transform duration-300';
+            mobileMenu.innerHTML = `
+            <button class="absolute top-6 right-6 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+           <div class="flex flex-col items-center gap-6">
+                <a href="/" class="text-white text-2xl font-medium hover:text-brave-lime transition-colors">Features</a>
+                <a href="/" class="text-white text-2xl font-medium hover:text-brave-lime transition-colors">Characters</a>
+                <a href="/" class="text-white text-2xl font-medium hover:text-brave-lime transition-colors">Gallery</a>
+                <a href="/" class="text-white text-2xl font-medium hover:text-brave-lime transition-colors">Testimonials</a>
+                <a href="/" class="bg-brave-red text-white font-bold py-3 px-6 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 mt-4">Download</a>
+            </div>
+        `;
+
+            document.body.appendChild(mobileMenu);
+
+            const closeButton = mobileMenu.querySelector('button');
+
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('-translate-y-full');
+                mobileMenu.classList.add('translate-y-0');
+            });
+
+            closeButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('translate-y-0');
+                mobileMenu.classList.add('-translate-y-full');
+            });
+
+            // Close mobile menu when clicking on links
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('translate-y-0');
+                    mobileMenu.classList.add('-translate-y-full');
+                });
+            });
+        });
+    </script>
+
+
+
+
+    <?php include '../cookie-consent.php'; ?>
+
+
+</body>
+
+</html>

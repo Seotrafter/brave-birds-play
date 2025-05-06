@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brave Birds: Match 3 Puzzle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel='icon' href='/src/icons/logo.png' type='image/x-icon'>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brave-green': '#005800',
+                        'brave-lime': '#96d900',
+                        'brave-red': '#9c0000',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .feather-glow {
+            filter: drop-shadow(0 0 8px rgba(150, 217, 0, 0.7));
+        }
+
+        .section-curve {
+            border-radius: 0 0 50% 50% / 100px;
+        }
+
+        .game-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 88, 0, 0.2);
+        }
+
+
+        .feather-glow {
+            filter: drop-shadow(0 0 8px rgba(150, 217, 0, 0.7));
+        }
+
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+
+        .bg-brave-green {
+            background-color: #005800;
+        }
+
+        .bg-brave-lime {
+            background-color: #96d900;
+        }
+
+        .bg-brave-red {
+            background-color: #9c0000;
+        }
+
+        .text-brave-green {
+            color: #005800;
+        }
+
+        .text-brave-red {
+            color: #9c0000;
+        }
+
+        .text-brave-lime {
+            color: #96d900;
+        }
+
+        .border-brave-green {
+            border-color: #005800;
+        }
+
+        .border-brave-lime {
+            border-color: #96d900;
+        }
+
+        .border-brave-red {
+            border-color: #9c0000;
+        }
+
+        .hover\:text-brave-lime:hover {
+            color: #96d900;
+        }
+
+        .hover\:bg-opacity-90:hover {
+            --tw-bg-opacity: 0.9;
+        }
+
+        .hover\:scale-105:hover {
+            transform: scale(1.05);
+        }
+
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .transform {
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased bg-white">
+    <!-- Header -->
+    <header class="bg-white py-4 px-6 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-brave-lime rounded-full overflow-hidden flex items-center justify-center">
+                    <img src="/src/icons/logo.png" alt="Brave Birds Logo" class="h-10 w-10  rounded-full object-contain">
+                </div>
+                <span class="text-brave-green font-extrabold text-2xl">Brave Birds: Match 3 Puzzle</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6">
+                <a href="/" class="text-brave-green hover:text-brave-lime font-medium transition-colors">Features</a>
+                <a href="/" class="text-brave-green hover:text-brave-lime font-medium transition-colors">Characters</a>
+                <a href="/" class="text-brave-green hover:text-brave-lime font-medium transition-colors">Gallery</a>
+                <a href="/" class="text-brave-green hover:text-brave-lime font-medium transition-colors">Testimonials</a>
+                <a href="/" class="bg-brave-red text-white font-bold py-3 px-6 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105">Download</a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button class="md:hidden text-brave-green">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+
+    <!-- Terms Hero Section -->
+    <section class="py-20 bg-brave-green text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-brave-green/90 to-brave-lime/70"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-thin mb-6 leading-tight">
+                    Terms and <span class="font-bold feather-glow">Conditions</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 font-light max-w-3xl mx-auto">
+                    Welcome to Brave Birds: Match 3 Puzzle!
+                </p>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- Terms Content Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-lg p-8 md:p-12">
+                <!-- Introduction -->
+                <div class="mb-12">
+                    <p class="text-gray-700 mb-6">
+                        These terms and conditions outline the rules and regulations for the use of Brave Birds: Match 3 Puzzle's Website, located at <a href="https://brave-birds-play.com/" class="text-brave-green font-medium hover:text-brave-lime transition-colors">https://brave-birds-play.com/</a>.
+                    </p>
+                    <p class="text-gray-700 mb-6">
+                        By accessing this website we assume you accept these terms and conditions. Do not continue to use Brave Birds: Match 3 Puzzle if you do not agree to take all of the terms and conditions stated on this page.
+                    </p>
+
+                    <div class="bg-gray-50 p-6 rounded-2xl border-l-4 border-brave-lime mb-8">
+                        <h3 class="text-2xl font-bold text-brave-green mb-4">Terminology</h3>
+                        <p class="text-gray-700 mb-4">
+                            The following terminology applies to these Terms and Conditions, Privacy Statement, and Disclaimer Notice and all Agreements:
+                        </p>
+                        <ul class="space-y-4 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span><strong>"Client"</strong>, <strong>"You"</strong>, and <strong>"Your"</strong> refers to you, the person logging onto this website and complying with the Company's terms and conditions.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span><strong>"The Company"</strong>, <strong>"Ourselves"</strong>, <strong>"We"</strong>, <strong>"Our"</strong>, and <strong>"Us"</strong> refers to our Company.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span><strong>"Party"</strong>, <strong>"Parties"</strong>, or <strong>"Us"</strong> refers to both the Client and ourselves.</span>
+                            </li>
+                        </ul>
+                        <p class="text-gray-700 mt-4">
+                            All terms refer to the offer, acceptance, and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client's needs in respect of the provision of the Company's stated services, in accordance with and subject to the prevailing law of the Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization, and/or he/she or they, are taken as interchangeable and therefore as referring to the same.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cookies Section -->
+                <div class="mb-12">
+                    <div class="bg-gray-50 p-6 rounded-2xl mb-8 border-l-4 border-brave-red">
+                        <h3 class="text-2xl font-bold text-brave-green mb-4">Cookies</h3>
+                        <p class="text-gray-700 mb-4">
+                            We employ the use of cookies. By accessing Brave Birds: Match 3 Puzzle, you agree to use cookies in agreement with the Brave Birds: Match 3 Puzzle's Privacy Policy.
+                        </p>
+                        <p class="text-gray-700">
+                            Most interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.
+                        </p>
+                    </div>
+                </div>
+                <!-- License Section -->
+                <div class="mb-12">
+                    <div class="bg-gray-50 p-6 rounded-2xl mb-8 border-l-4 border-brave-green">
+                        <h3 class="text-2xl font-bold text-brave-green mb-4">License</h3>
+                        <p class="text-gray-700 mb-4">
+                            Unless otherwise stated, Brave Birds: Match 3 Puzzle and/or its licensors own the intellectual property rights for all material on Brave Birds: Match 3 Puzzle. All intellectual property rights are reserved. You may access this from Brave Birds: Match 3 Puzzle for your own personal use, subject to the restrictions set in these terms and conditions.
+                        </p>
+
+                        <p class="text-gray-700 mb-4 font-medium">You must not:</p>
+                        <ul class="space-y-2 text-gray-700 mb-6 pl-5">
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Republish material from Brave Birds: Match 3 Puzzle</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Sell, rent, or sub-license material from Brave Birds: Match 3 Puzzle</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Reproduce, duplicate, or copy material from Brave Birds: Match 3 Puzzle</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Redistribute content from Brave Birds: Match 3 Puzzle</span>
+                            </li>
+                        </ul>
+
+                        <p class="text-gray-700">
+                            This Agreement shall begin on the date hereof.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- User Comments Section -->
+                <div class="mb-12">
+                    <div class="bg-gray-50 p-6 rounded-2xl mb-8 border-l-4 border-brave-lime">
+                        <h3 class="text-2xl font-bold text-brave-green mb-4">User Comments</h3>
+                        <p class="text-gray-700 mb-4">
+                            Parts of this website offer users an opportunity to post and exchange opinions and information. Brave Birds: Match 3 Puzzle does not filter, edit, publish, or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of Brave Birds: Match 3 Puzzle, its agents, and/or affiliates. Comments reflect the views and opinions of the person posting them.
+                        </p>
+
+                        <p class="text-gray-700 mb-4">
+                            To the extent permitted by applicable laws, Brave Birds: Match 3 Puzzle shall not be liable for the Comments or any liability, damages, or expenses caused and/or suffered due to any use of and/or posting of and/or appearance of the Comments on this website.
+                        </p>
+
+                        <p class="text-gray-700 mb-4">
+                            Brave Birds: Match 3 Puzzle reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive, or a breach of these Terms and Conditions.
+                        </p>
+
+                        <p class="text-gray-700 mb-4 font-medium">You warrant and represent that:</p>
+                        <ul class="space-y-2 text-gray-700 mb-6 pl-5">
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>You are entitled to post the Comments on our website and have all necessary licenses and consents to do so.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>The Comments do not invade any intellectual property rights, including but not limited to copyright, patent, or trademark of any third party.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>The Comments do not contain any defamatory, libelous, offensive, indecent, or otherwise unlawful material that is an invasion of privacy.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>The Comments will not be used to solicit or promote business, custom, or present commercial activities or unlawful activity.</span>
+                            </li>
+                        </ul>
+
+                        <p class="text-gray-700">
+                            You hereby grant Brave Birds: Match 3 Puzzle a non-exclusive license to use, reproduce, edit, and authorize others to use, reproduce, and edit any of your Comments in any and all forms, formats, or media.
+                        </p>
+                    </div>
+                </div>
+                <!-- Hyperlinking Section -->
+                <div class="mb-12">
+                    <div class="bg-gray-50 p-6 rounded-2xl mb-8 border-l-4 border-brave-red">
+                        <h3 class="text-2xl font-bold text-brave-green mb-4">Hyperlinking to our Content</h3>
+                        <p class="text-gray-700 mb-4">
+                            The following organizations may link to our Website without prior written approval:
+                        </p>
+
+                        <ul class="space-y-2 text-gray-700 mb-6 pl-5">
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Government agencies</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Search engines</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>News organizations</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Online directory distributors</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>System-wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups</span>
+                            </li>
+                        </ul>
+
+                        <p class="text-gray-700 mb-4">
+                            These organizations may link to our home page, publications, or other Website information, provided that the link:
+                        </p>
+                        <ol class="list-alphabetic text-gray-700 mb-6 pl-5 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-brave-green mr-2">(a)</span>
+                                <span>is not deceptive;</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-green mr-2">(b)</span>
+                                <span>does not falsely imply sponsorship, endorsement, or approval of the linking party and its products/services; and</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-green mr-2">(c)</span>
+                                <span>fits within the context of the linking party's site.</span>
+                            </li>
+                        </ol>
+
+                        <p class="text-gray-700 mb-4">
+                            We may consider and approve other link requests from the following types of organizations:
+                        </p>
+
+                        <ul class="space-y-2 text-gray-700 mb-6 pl-5">
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Commonly-known consumer and/or business information sources</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Dot.com community sites</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Associations or other groups representing charities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Online directory distributors</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Internet portals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Accounting, law, and consulting firms</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Educational institutions and trade associations</span>
+                            </li>
+                        </ul>
+
+                        <p class="text-gray-700 mb-4">
+                            If you are one of these organizations and wish to link to our website, you must inform us by sending an e-mail to Brave Birds: Match 3 Puzzle. Please include your name, organization name, contact information, and the URLs you wish to link from and to. Please allow 2-3 weeks for a response.
+                        </p>
+
+                        <p class="text-gray-700 mb-4">
+                            Approved organizations may hyperlink to our Website as follows:
+                        </p>
+
+                        <ul class="space-y-2 text-gray-700 mb-6 pl-5">
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>By use of our corporate name</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>By use of the uniform resource locator (URL) being linked to</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>By use of any other description that makes sense within the context of the linking party's site</span>
+                            </li>
+                        </ul>
+
+                        <p class="text-gray-700">
+                            No use of Brave Birds: Match 3 Puzzle's logo or other artwork will be allowed for linking without a trademark license agreement.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- iFrames Section -->
+                <div class="mb-12">
+                    <div class="bg-gray-50 p-6 rounded-2xl mb-8 border-l-4 border-brave-lime">
+                        <h3 class="text-2xl font-bold text-brave-green mb-4">iFrames</h3>
+                        <p class="text-gray-700">
+                            Without prior approval and written permission, you may not create frames around our webpages that alter the visual presentation or appearance of our Website.
+                        </p>
+                    </div>
+                </div>
+                <!-- Content Liability Section -->
+                <div class="mb-12">
+                    <div class="bg-gray-50 p-6 rounded-2xl mb-8 border-l-4 border-brave-green">
+                        <h3 class="text-2xl font-bold text-brave-green mb-4">Content Liability</h3>
+                        <p class="text-gray-700">
+                            We shall not be held responsible for any content that appears on your website. You agree to protect and defend us against all claims that arise on your website. No link(s) should appear on any website that may be interpreted as libelous, obscene, or criminal, or which infringes, otherwise violates, or advocates the infringement of any third-party rights.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Reservation of Rights Section -->
+                <div class="mb-12">
+                    <div class="bg-gray-50 p-6 rounded-2xl mb-8 border-l-4 border-brave-red">
+                        <h3 class="text-2xl font-bold text-brave-green mb-4">Reservation of Rights</h3>
+                        <p class="text-gray-700">
+                            We reserve the right to request the removal of all links or any particular link to our Website. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Disclaimer Section -->
+                <div class="mb-12">
+                    <div class="bg-gray-50 p-6 rounded-2xl mb-8 border-l-4 border-brave-lime">
+                        <h3 class="text-2xl font-bold text-brave-green mb-4">Disclaimer</h3>
+                        <p class="text-gray-700 mb-4">
+                            To the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions relating to our website and its use. Nothing in this disclaimer will:
+                        </p>
+
+                        <ul class="space-y-2 text-gray-700 mb-6 pl-5">
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Limit or exclude our or your liability for death or personal injury</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Limit or exclude our or your liability for fraud or fraudulent misrepresentation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Limit any of our or your liabilities in any way that is not permitted under applicable law</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brave-red mr-2">•</span>
+                                <span>Exclude any of our or your liabilities that may not be excluded under applicable law</span>
+                            </li>
+                        </ul>
+
+                        <p class="text-gray-700">
+                            As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="bg-brave-lime/10 p-8 rounded-3xl">
+                    <h3 class="text-2xl font-bold text-brave-green mb-4">Contact Us</h3>
+                    <p class="text-gray-700 mb-6">
+                        If you have any questions about these Terms and Conditions, please contact us:
+                    </p>
+                    <div class="inline-block bg-white px-6 py-3 rounded-full shadow-md">
+                        <p class="text-brave-green font-medium">support@brave-birds-play.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-brave-green mb-6">Ready to Play?</h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    Return to Brave Birds: Match 3 Puzzle and continue your adventure!
+                </p>
+                <a href="/" class="inline-block bg-brave-red text-white font-bold py-4 px-8 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg">
+                    Back to Game
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-brave-green text-white py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <a href="/" class="flex items-center gap-3 mb-6 md:mb-0">
+                    <div class="w-12 h-12 bg-brave-lime rounded-full overflow-hidden flex items-center justify-center">
+                        <img src="/src/icons/logo.png" alt="Brave Birds Logo" class="h-10 w-10 rounded-full object-contain">
+                    </div>
+                    <span class="text-white font-bold text-xl">Brave Birds: Match 3 Puzzle</span>
+                </a>
+
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/charstudio/" target="_blank" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-brave-lime hover:text-brave-green transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/charstudio_team/" target="_blank" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-brave-lime hover:text-brave-green transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="border-t border-white border-opacity-20 pt-8 flex flex-col md:flex-row justify-between">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <p>&copy; 2025 Brave Birds Game. All Rights Reserved.</p>
+                </div>
+                <div class="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
+                    <a href="/Policy356/" class="hover:text-brave-lime transition-colors">Privacy Policy</a>
+                    <a href="/Service347/" class="hover:text-brave-lime transition-colors">Terms of Service</a>
+                    <a href="/Cookie992/" class="hover:text-brave-lime transition-colors">Cookie Policy</a>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Simple JS for mobile menu toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'fixed inset-0 bg-brave-green z-50 flex flex-col items-center justify-center transform -translate-y-full transition-transform duration-300';
+            mobileMenu.innerHTML = `
+            <button class="absolute top-6 right-6 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="flex flex-col items-center gap-6">
+                <a href="/" class="text-white text-2xl font-medium hover:text-brave-lime transition-colors">Features</a>
+                <a href="/" class="text-white text-2xl font-medium hover:text-brave-lime transition-colors">Characters</a>
+                <a href="/" class="text-white text-2xl font-medium hover:text-brave-lime transition-colors">Gallery</a>
+                <a href="/" class="text-white text-2xl font-medium hover:text-brave-lime transition-colors">Testimonials</a>
+                <a href="/" class="bg-brave-red text-white font-bold py-3 px-6 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 mt-4">Download</a>
+            </div>
+        `;
+
+            document.body.appendChild(mobileMenu);
+
+            const closeButton = mobileMenu.querySelector('button');
+
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('-translate-y-full');
+                mobileMenu.classList.add('translate-y-0');
+            });
+
+            closeButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('translate-y-0');
+                mobileMenu.classList.add('-translate-y-full');
+            });
+
+            // Close mobile menu when clicking on links
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('translate-y-0');
+                    mobileMenu.classList.add('-translate-y-full');
+                });
+            });
+        });
+    </script>
+
+
+
+
+    <?php include '../cookie-consent.php'; ?>
+
+
+</body>
+
+</html>
